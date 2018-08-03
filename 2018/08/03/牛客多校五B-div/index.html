@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 伯努利数 | hyesuixin&#39;s blog</title>
+  <title>牛客多校五B div | hyesuixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hyesuixin&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/伯努利数/index.html">
+  <meta name="description" content="题目链接 题意简单不解释，首先要进行一些数学式子的推导。">
+<meta name="keywords" content="数论,佩尔方程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客多校五B div">
+<meta property="og:url" content="http://yoursite.com/2018/08/03/牛客多校五B-div/index.html">
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
+<meta property="og:description" content="题目链接 题意简单不解释，首先要进行一些数学式子的推导。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-03T09:25:07.845Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hyesuixin&#39;s blog">
+<meta name="twitter:title" content="牛客多校五B div">
+<meta name="twitter:description" content="题目链接 题意简单不解释，首先要进行一些数学式子的推导。">
   
     <link rel="alternative" href="/atom.xml" title="hyesuixin&#39;s blog" type="application/atom+xml">
   
@@ -158,36 +163,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-牛客多校五B-div" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/22/牛客多校一，F-Sum-of-Maximum/" class="archive-article-date">
-  	<time datetime="2018-07-22T12:08:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/22/牛客多校一，F-Sum-of-Maximum/">牛客多校一，F Sum of Maximum</a>
+    <h1 class="article-title" itemprop="name">
+      牛客多校五B div
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/03/牛客多校五B-div/" class="archive-article-date">
+  	<time datetime="2018-08-03T08:51:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.nowcoder.com/acm/contest/143/B" target="_blank" rel="noopener">题目链接</a></p>
+<p>题意简单不解释，首先要进行一些数学式子的推导。</p>
+<a id="more"></a>
+<p>$$<br>设x=n^2+a，那么显然a\in[1,2n]，并且x|n^4，那么x|(n^4-y\times x)<br>$$</p>
+<p>$$<br>令y=(n^2-a) 则存在(n^2+a)|(n^4-(n^2+a)\times (n^2-a))<br>$$</p>
+<p>$$<br>把右边化简一下就是(n^2+a)|a^2 即a^2=t(n^2+a)<br>$$</p>
+<p>$$<br>又a\in[1,2n]所以a^2\le 4n^2\quad 放缩一下可得a^2&lt;4(n^2+a)<br>$$</p>
+<p>$$<br>结合上式就可得到t=1,2,3<br>$$</p>
+<p>接下来的推导需要引入佩尔方程的内容，具体内容可自行百度<br>$$<br>t=1时令a=2x方程可化为(x-1)^2-n^2=1<br>$$</p>
+<p>$$<br>t=2时方程可化为(a-1)^2-2n^2=1<br>$$</p>
+<p>$$<br>t=3时令a=3b，n=3y则方程可化为(2b-1)^2-12y^2=1<br>$$</p>
+<p>以上方程均为佩尔方程的典型形式，直接套板子就可求出最小解，然后利用以下递推式找到大于等于n的最小解<br>$$<br>x_{n+1}=x_1\times x_n+D\times y_1\times y_{n} \quad y_{n+1}=y_1\times x_n+x_1\times y_n<br>$$</p>
+<p>$$<br>x_{n+2}=2\times x_1\times x_{n+1}-x_n\quad y_{n+2}=2\times x_1\times y_{n+1}-y_n<br>$$</p>
+<p>佩尔方程求最小解模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">PQA</span><span class="params">(LLI D, LLI &amp;p, LLI &amp;q)</span> </span>&#123;<span class="comment">//来自于PQA算法的一个特例</span></span><br><span class="line">    LLI d = <span class="built_in">sqrt</span>(D);</span><br><span class="line">    <span class="keyword">if</span> ((d + <span class="number">1</span>) * (d + <span class="number">1</span>) == D) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (d * d == D)             <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> ((d - <span class="number">1</span>) * (d - <span class="number">1</span>) == D) <span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//这里是判断佩尔方程有没有解</span></span><br><span class="line">    LLI u = <span class="number">0</span>, v = <span class="number">1</span>, a = <span class="keyword">int</span>(<span class="built_in">sqrt</span>(D)), a0 = a, lastp = <span class="number">1</span>, lastq = <span class="number">0</span>;</span><br><span class="line">    p = a, q = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        u = a * v - u;</span><br><span class="line">        v = (D - u * u) / v;</span><br><span class="line">        a = (a0 + u) / v;</span><br><span class="line">        LLI thisp = p, thisq = q;</span><br><span class="line">        p = a * p + lastp;</span><br><span class="line">        q = a * q + lastq;</span><br><span class="line">        lastp = thisp;</span><br><span class="line">        lastq = thisq;</span><br><span class="line">    &#125; <span class="keyword">while</span> ((v != <span class="number">1</span> &amp;&amp; a &lt;= a0));<span class="comment">//这里一定要用do~while循环</span></span><br><span class="line">    p = lastp;</span><br><span class="line">    q = lastq;</span><br><span class="line">    <span class="comment">//这样求出后的(p,q)是p2 – D * q2 = (-1)k的解，也就是说p2 – D * q2可能等于1也可能等于-1,如果等于1,(p,q)就是解,如果等于-1还要通过(p2 + D * q2,2 * p * q)来求解，如下</span></span><br><span class="line">    <span class="keyword">if</span> (p * p - D * q * q == <span class="number">-1</span>) &#123;</span><br><span class="line">        p = lastp * lastp + D * lastq * lastq;</span><br><span class="line">        q = <span class="number">2</span> * lastp * lastq;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后这题数据很大，要用大数，所以我用python写的</p>
+<p>AC代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">n=int(input())</span><br><span class="line">y1=<span class="number">0</span></span><br><span class="line">y2=<span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> y2&lt;n:</span><br><span class="line">    tp=<span class="number">6</span>*y2-y1</span><br><span class="line">    y1=y2</span><br><span class="line">    y2=tp</span><br><span class="line">res1=y2</span><br><span class="line">y1=<span class="number">0</span></span><br><span class="line">y2=<span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">3</span>*y2&lt;n:</span><br><span class="line">    tp=<span class="number">14</span>*y2-y1</span><br><span class="line">    y1=y2</span><br><span class="line">    y2=tp</span><br><span class="line">res2=<span class="number">3</span>*y2</span><br><span class="line">ans=min(res1,res2)</span><br><span class="line">print(ans)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -197,29 +218,123 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">拉格朗日插值</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">伯努利数</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">佩尔方程</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/03/牛客多校五B-div/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/08/03/HDU-6333-Harvest-of-Apples-杭电多校四-B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HDU 6333 Harvest of Apples 杭电多校四 B</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2018/08/03/牛客多校五B-div/", 
+    sourceId: "牛客多校五B-div",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -242,9 +357,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
