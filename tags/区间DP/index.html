@@ -6,20 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HDU 6314 Matrix 杭电多校二1006 | hyesuixin&#39;s blog</title>
+  <title>Tag: 区间dp | hyesuixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目链接 题意很简单，给一个n*m的棋盘，求把其中至少a行b列染成全黑的方案数。">
-<meta name="keywords" content="数论,容斥原理">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HDU 6314 Matrix 杭电多校二1006">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/HDU-6314-Matrix-杭电多校二1006/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="hyesuixin&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/区间dp/index.html">
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
-<meta property="og:description" content="题目链接 题意很简单，给一个n*m的棋盘，求把其中至少a行b列染成全黑的方案数。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T13:29:09.691Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HDU 6314 Matrix 杭电多校二1006">
-<meta name="twitter:description" content="题目链接 题意很简单，给一个n*m的棋盘，求把其中至少a行b列染成全黑的方案数。">
+<meta name="twitter:title" content="hyesuixin&#39;s blog">
   
     <link rel="alternative" href="/atom.xml" title="hyesuixin&#39;s blog" type="application/atom+xml">
   
@@ -163,177 +158,68 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HDU-6314-Matrix-杭电多校二1006" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      HDU 6314 Matrix 杭电多校二1006
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/08/07/HDU-3506-Monkey-Party-四边形优化入门/" class="archive-article-date">
+  	<time datetime="2018-08-07T11:25:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/08/07/HDU-3506-Monkey-Party-四边形优化入门/">HDU 3506 Monkey Party 四边形优化入门</a>
     </h1>
   
 
-        
-        <a href="/2018/07/31/HDU-6314-Matrix-杭电多校二1006/" class="archive-article-date">
-  	<time datetime="2018-07-31T14:02:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6314" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意很简单，给一个n*m的棋盘，求把其中至少a行b列染成全黑的方案数。</p>
-<a id="more"></a>
-<p>照着官方题解搞了一下午，结果样例都没搞对，最后心累看的杜教的代码(发现看不懂啊~~)，好不容易找到了一篇博客，推了好久才弄懂杜教的代码。不过杜教的代码被卡常卡的很厉害啊，我一开开long long 就T，后来改int还是T，发现有一个我是直接算的，杜教是预处理的(虽然我还是不知道那为啥要预处理，明明可以O(1)直接计算的。)，然后把那个预处理加上才过，下面是完整的推导过程。</p>
-<p>我们实际上要求的是，把i行j列全涂黑，然后剩下的部分不是全为黑的方案数，即<br>$$<br>\sum_{i=a}^{n}\sum_{j=b}^{m} C_{n}^{i}\times C_{m}^{j} \times f(n-i,m-j)<br>$$<br>f(n-i,m-j)表示剩下的部分不全为黑的方案数。对于这个东西我们可以利用容斥写出式子<br>$$<br>f(x,y)=\sum_{i=0}^{x}\sum_{j=0}^{y} (-1)^{x+y}\times C_{x}^{i}\times C_{y}^{j}\times 2^{(x-i)\times (y-j)}<br>$$<br>对于第一个式子我们先换一下元，便于我们把f(x,y)的式子带进去，令i=n-i，j=m-j，得到<br>$$<br>\sum_{i=0}^{n-a}\sum_{j=0}^{m-b} C_{n}^{n-i} \times C_{m}^{m-j}\times f(i,j)<br>$$<br>再利用一下组合数的性质，<br>$$<br>C_{n}^{n-i}=C_{n}^{i}<br>$$<br>同时我们把f(x,y)的式子带进去，得到<br>$$<br>\sum_{i=0}^{n-a}\sum_{j=0}^{m-b} C_{n}^i\times C_{m}^j\times \sum_{u=0}^{i}\sum_{v=0}^{j} (-1)^{u+v}\times C_{i}^{u}\times C_{j}^{v}\times 2^{(i-u)\times (j-v)}<br>$$<br>同样使用换元，令u=i-u，v=j-v，整理一下就可以得到<br>$$<br>\sum_{i=0}^{n-a}\sum_{j=0}^{m-b} C_{n}^{i}\times C_{m}^{j}\times (-1)^{(i+j)}\times \sum_{u=0}^{i}\sum_{v=0}^{j} (-1)^{u+v}\times C_{i}^{u}\times C_{j}^{v}\times 2^{uv}<br>$$</p>
-<p>对这个式子改变求和次序，可以得到<br>$$<br>\sum_{u=0}^{n-a}\sum_{v=0}^{m-b}\sum_{i=u}^{n-a}\sum_{j=v}^{m-b} (-1)^{i+j}\times (-1)^{u+v}\times C_{n}^{i}\times C_{m}^{j}\times C_{i}^{u}\times C_{j}^{v}\times 2^{uv}<br>$$<br>进一步改变求和次序得到<br>$$<br>\sum_{u=0}^{n-a}\sum_{v=0}^{m-b} (-1)^{u+v}\times 2^{uv}\times (\sum_{i=u}^{n-a} (-1)^{i}\times C_{n}^{i}\times C_{i}^{u}) \times (\sum_{j=v}^{m-b} (-1)^{j}\times C_{m}^{j}\times C_{j}^{v})<br>$$<br>接下来把内部的组合数展开<br>$$<br>\sum_{u=0}^{n-a}\sum_{v=0}^{m-b} (-1)^{u+v}\times 2^{uv}\times (\sum_{i=u}^{n-a} (-1)^{i}\times \frac{n!}{i!\times (n-i)!}\times \frac{i!}{u!\times (i-u)!})\times (\sum_{j=v}^{m-b}(-1)^{j}\times \frac{m!}{j!\times (m-j)!}\times \frac{j!}{v!\times (j-v)!})<br>$$<br>把里面能消的消掉，能提出来的提出来。<br>$$<br>n!\times m!\times \sum_{u=0}^{n-a}\sum_{v=0}^{m-b}(-1)^{u+v}\times \frac{2^{uv}}{u!\times v!}\times (\sum_{i=u}^{n-a}\frac{(-1)^{i}}{(i-u)!\times (n-i)!})\times (\sum_{j=v}^{m-b}\frac{(-1)^{j}}{(j-v)!\times (m-j)!})<br>$$<br>对其进行最后一次换元，令i=i+u,j=j+v。就可以得到我们所要的求答案的式子<br>$$<br>n!\times m!\times \sum_{u=0}^{n-a}\sum_{v=0}^{m-b} \frac{2^{uv}}{u!\times v!}\times (\sum_{i=0}^{n-a-u} \frac{(-1)^{i}}{i!\times (n-i-u)!})\times (\sum_{j=0}^{m-b-v} \frac{(-1)^{j}}{j!\times (m-j-v}!)<br>$$<br>对于这个式子，我们可以发现后面有两个结构完全一样的两个部分，那么这个式子就可进行预处理，同时，前面<br>$$<br>\frac{2^{uv}}{u!\times v!}<br>$$<br>同样可以进行预处理，这样预处理之后就可以在n*m的复杂度内跑出答案了。 </p>
-<p>AC代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m,a,b;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> fac[MAXM+<span class="number">10</span>],inv[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> pw[MAXM*MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[MAXM+<span class="number">10</span>][MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> wp[MAXM+<span class="number">10</span>][MAXM+<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x,<span class="keyword">long</span> <span class="keyword">long</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (y&amp;<span class="number">1L</span>L) res=(res*x)%MOD;</span><br><span class="line">        x=(x*x)%MOD;</span><br><span class="line">        y=y&gt;&gt;<span class="number">1L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=inv[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> <span class="keyword">long</span> i=<span class="number">1</span>;i&lt;=MAXM;i++)</span><br><span class="line">        fac[i]=(fac[i<span class="number">-1</span>]*i)%MOD,inv[i]=qpow(fac[i],MOD<span class="number">-2</span>);</span><br><span class="line">    pw[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=MAXM*MAXM;i++)</span><br><span class="line">        pw[i]=(pw[i<span class="number">-1</span>]*<span class="number">2</span>)%MOD;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=MAXM;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=MAXM;j++)</span><br><span class="line">            wp[i][j]=(pw[i*j]*inv[i]%MOD)*inv[j]%MOD;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=MAXM;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i;j&gt;=<span class="number">0</span>;j--) &#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> tmp=inv[i-j]*inv[j];</span><br><span class="line">            <span class="keyword">if</span> ((i-j)&amp;<span class="number">1</span>) tmp=(-tmp+MOD);</span><br><span class="line">            f[i][j]=(f[i][j+<span class="number">1</span>]+tmp)%MOD;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;n,&amp;m,&amp;a,&amp;b)!=EOF) &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n-a;i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m-b;j++)</span><br><span class="line">                ans=(ans+(wp[i][j]*f[n-i][a]%MOD)*f[m-j][b]%MOD)%MOD;</span><br><span class="line">        &#125;</span><br><span class="line">        ans=(ans*fac[n]%MOD)*fac[m]%MOD;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">四边形优化</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容斥原理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">区间dp</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/31/HDU-6314-Matrix-杭电多校二1006/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/07/31/牛客多校四-A-Temary-String/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          牛客多校四 A Temary String
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/07/31/HDU-6313-hack-it-杭电多校二1005/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HDU 6313 hack it 杭电多校二1005</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
-  
-  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-<script>
-  var cloudTieConfig = {
-    url: "http://yoursite.com/2018/07/31/HDU-6314-Matrix-杭电多校二1006/", 
-    sourceId: "HDU-6314-Matrix-杭电多校二1006",
-    productKey: "true",
-    target: "cloud-tie-wrapper"
-  };
-</script>
-<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -356,9 +242,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
