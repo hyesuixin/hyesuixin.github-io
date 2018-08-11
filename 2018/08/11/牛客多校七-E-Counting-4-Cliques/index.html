@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>安利一下旧博客 | hyesuixin&#39;s blog</title>
+  <title>牛客多校七 E Counting 4-Cliques | hyesuixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="旧博客 以前写的一些题解。。。。">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="题目链接 题意就是要构造一个图，保证图中恰好有k个四个点组成的完全子图。">
+<meta name="keywords" content="dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="安利一下旧博客">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/hello-world/index.html">
+<meta property="og:title" content="牛客多校七 E Counting 4-Cliques">
+<meta property="og:url" content="http://yoursite.com/2018/08/11/牛客多校七-E-Counting-4-Cliques/index.html">
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
-<meta property="og:description" content="旧博客 以前写的一些题解。。。。">
+<meta property="og:description" content="题目链接 题意就是要构造一个图，保证图中恰好有k个四个点组成的完全子图。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T00:58:34.021Z">
+<meta property="og:updated_time" content="2018-08-11T02:31:34.964Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="安利一下旧博客">
-<meta name="twitter:description" content="旧博客 以前写的一些题解。。。。">
+<meta name="twitter:title" content="牛客多校七 E Counting 4-Cliques">
+<meta name="twitter:description" content="题目链接 题意就是要构造一个图，保证图中恰好有k个四个点组成的完全子图。">
   
     <link rel="alternative" href="/atom.xml" title="hyesuixin&#39;s blog" type="application/atom+xml">
   
@@ -163,29 +163,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-牛客多校七-E-Counting-4-Cliques" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      安利一下旧博客
+      牛客多校七 E Counting 4-Cliques
     </h1>
   
 
         
-        <a href="/2018/07/31/hello-world/" class="archive-article-date">
-  	<time datetime="2018-07-31T10:50:57.149Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
+        <a href="/2018/08/11/牛客多校七-E-Counting-4-Cliques/" class="archive-article-date">
+  	<time datetime="2018-08-11T02:21:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://blog.csdn.net/hyesuixin" target="_blank" rel="noopener">旧博客</a></p>
-<p>以前写的一些题解。。。。</p>
+        <p><a href="https://www.nowcoder.com/acm/contest/145/E" target="_blank" rel="noopener">题目链接</a></p>
+<p>题意就是要构造一个图，保证图中恰好有k个四个点组成的完全子图。</p>
 <a id="more"></a>
+<p>首先对于一个n个点的完全图，可以很容易的算出其中四个点组成的完全子图的个数为C(n,4)，粗略跑一下就可以算出n大于等于75时，其子图数量就已经超过1e6了，所以可以保证所需要构造的图的点的个数不会超过75,。所以我们可以先构造一个x个点的完全图，他满足条件的子图数量为C(x,4)，找到一个子图数量与k接近并小于k的x，然后剩下不足k的部分通过x之外的点构造，我们保证在x个点以外所加的点之间互不相连，那么对于任意一个加上去的点，他向x个点的完全图内连的边数如果为y,那么这个点就可以参与构造出C(y,3)个新的符合条件的子图。然后dp一下找到恰好为k的可行方案就好了。</p>
+<p>AC代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker, <span class="meta-string">"/STACK:1024000000,1024000000"</span>)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">1e5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">2e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">0.0000005</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> k;</span><br><span class="line"><span class="keyword">bool</span> dp[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">80</span>][<span class="number">80</span>][MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span> &gt; res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">comb4</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=(n*(n<span class="number">-1</span>)*(n<span class="number">-2</span>)*(n<span class="number">-3</span>))/<span class="number">24</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">comb3</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> res=(n*(n<span class="number">-1</span>)*(n<span class="number">-2</span>))/<span class="number">6</span>;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">    <span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">3</span>; i&lt;=<span class="number">70</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (comb4(i)&lt;k)  x=i;</span><br><span class="line">    &#125;</span><br><span class="line">    dp[<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">    k=k-comb4(x);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=x+<span class="number">1</span>; i&lt;=<span class="number">75</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=k; j&gt;=<span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[j]) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> p=<span class="number">2</span>; p&lt;=x; p++) &#123;</span><br><span class="line">                    <span class="keyword">int</span> w=comb3(p);</span><br><span class="line">                    <span class="keyword">if</span> (j+w&gt;k) <span class="keyword">break</span>;</span><br><span class="line">                    dp[j+w]=<span class="literal">true</span>;</span><br><span class="line">                    vis[i][p][j+w]=<span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res.clear();</span><br><span class="line">    <span class="keyword">int</span> sum=x*(x<span class="number">-1</span>)/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">75</span>; i&gt;x; i--) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">2</span>; j&lt;=x; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vis[i][j][k]) &#123;</span><br><span class="line">                res.push_back(j);</span><br><span class="line">                sum+=j;</span><br><span class="line">                k=k-comb3(j);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,<span class="number">75</span>,sum);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;=x; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;=x; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,i,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> len=res.size();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++) &#123;</span><br><span class="line">        x++;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=res[i]; j++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,x,j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -199,7 +202,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
         		</li>
       		
 		</ul>
@@ -255,7 +258,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/07/31/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/11/牛客多校七-E-Counting-4-Cliques/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -269,18 +272,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/07/31/HDU-6313-hack-it-杭电多校二1005/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          HDU 6313 hack it 杭电多校二1005
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/07/31/HDU-6321-Dynamic-Graph-Matching-杭电多校三C/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HDU 6321 Dynamic Graph Matching 杭电多校三C</div>
+    <a href="/2018/08/09/HDU-6363-bookshelf-杭电多校六1002/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HDU 6363 bookshelf 杭电多校六1002</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -311,8 +305,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2018/07/31/hello-world/", 
-    sourceId: "hello-world",
+    url: "http://yoursite.com/2018/08/11/牛客多校七-E-Counting-4-Cliques/", 
+    sourceId: "牛客多校七-E-Counting-4-Cliques",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
