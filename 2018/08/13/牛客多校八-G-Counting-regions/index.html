@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>hyesuixin&#39;s blog</title>
+  <title>牛客多校八 G Counting regions | hyesuixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hyesuixin&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="题目链接 题意就是给定一个n个顶点的正多边形，把对角线全部连起来，求可以把多边形分割成多少个区域。">
+<meta name="keywords" content="数论,平面几何欧拉公式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客多校八 G Counting regions">
+<meta property="og:url" content="http://yoursite.com/2018/08/13/牛客多校八-G-Counting-regions/index.html">
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
+<meta property="og:description" content="题目链接 题意就是给定一个n个顶点的正多边形，把对角线全部连起来，求可以把多边形分割成多少个区域。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-13T13:00:03.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hyesuixin&#39;s blog">
+<meta name="twitter:title" content="牛客多校八 G Counting regions">
+<meta name="twitter:description" content="题目链接 题意就是给定一个n个顶点的正多边形，把对角线全部连起来，求可以把多边形分割成多少个区域。">
   
     <link rel="alternative" href="/atom.xml" title="hyesuixin&#39;s blog" type="application/atom+xml">
   
@@ -158,16 +163,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-牛客多校八-G-Counting-regions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-牛客多校八-G-Counting-regions" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/13/牛客多校八-G-Counting-regions/">牛客多校八 G Counting regions</a>
+    <h1 class="article-title" itemprop="name">
+      牛客多校八 G Counting regions
     </h1>
   
 
@@ -182,9 +185,10 @@
       
         <p><a href="https://www.nowcoder.com/acm/contest/146/G" target="_blank" rel="noopener">题目链接</a></p>
 <p>题意就是给定一个n个顶点的正多边形，把对角线全部连起来，求可以把多边形分割成多少个区域。</p>
-        
-          <a class="article-more-a" href="/2018/08/13/牛客多校八-G-Counting-regions/#more">read more >></a>
-        
+<a id="more"></a>
+<p>首先引入平面几何欧拉公式<br>$$<br>E-V+2=R\quad (E表示平面内的边数，V是平面内的点数，R则是平面被分割的区域数)<br>$$<br>接下来的任务就是求点和边的数量，首先多边形有n个顶点，然后我们要求内部的对角线后形成多少个交点。我们在多边形的顶点中任选4个点，都可以确定一个四边形，而这个四边形的两条对角线就会形成一个交点。所以内部形成的交点个数为C(n,4)。(对于如何证明这些交点不会出现重复，我也不知道)。然后对于边数，首先我们不考虑内部的交点，整个多边形加上对角线就是n*(n-1)/2。然后在考虑交点。每两条对角线相交就会产生两条新的边，所以交点产生的新的边数就是2C(n,4)。下面还附一个集训队大佬推的式子，求出的是不包括多边形的边剩下的边的数目。<br>$$<br>\frac{n}{2}\times \sum_{i=1}^{n-3}(i\times (n-i-2)+1)<br>$$<br>AC代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker, <span class="meta-string">"/STACK:1024000000,1024000000"</span>)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">2e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">0.0000005</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x,<span class="keyword">long</span> <span class="keyword">long</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (y&amp;<span class="number">1L</span>L) res=(res*x)%MOD;</span><br><span class="line">        x=(x*x)%MOD;</span><br><span class="line">        y=y&gt;&gt;<span class="number">1L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">comb</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res=(n*(n<span class="number">-1</span>)%MOD*(n<span class="number">-2</span>)%MOD*(n<span class="number">-3</span>)%MOD)%MOD;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> inv=qpow(<span class="number">24</span>,MOD<span class="number">-2</span>);</span><br><span class="line">    res=(res*inv)%MOD;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lld"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> v=comb(n);</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> e=((n*(n<span class="number">-1</span>)/<span class="number">2</span>)%MOD+v*<span class="number">2</span>%MOD)%MOD;</span><br><span class="line">    v=(v+n)%MOD;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=(e-v+<span class="number">2</span><span class="number">-1</span>+MOD)%MOD;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -212,10 +216,73 @@
       
 
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/13/牛客多校八-G-Counting-regions/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/12/牛客多校七-C-Bit-Compression/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">牛客多校七 C Bit Compression</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -235,709 +302,25 @@
 
 
 
-
-  
-    <article id="post-牛客多校七-C-Bit-Compression" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/12/牛客多校七-C-Bit-Compression/">牛客多校七 C Bit Compression</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/12/牛客多校七-C-Bit-Compression/" class="archive-article-date">
-  	<time datetime="2018-08-12T12:27:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.nowcoder.com/acm/contest/145/C" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意给你一个长度为2^n的01串，你每次可以压缩一半，具体压缩方式题面说的很清楚了，然后问使最终长度为1的01串为1的方案数。</p>
-        
-          <a class="article-more-a" href="/2018/08/12/牛客多校七-C-Bit-Compression/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">dfs</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-牛客多校七-E-Counting-4-Cliques" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/11/牛客多校七-E-Counting-4-Cliques/">牛客多校七 E Counting 4-Cliques</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/11/牛客多校七-E-Counting-4-Cliques/" class="archive-article-date">
-  	<time datetime="2018-08-11T02:21:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.nowcoder.com/acm/contest/145/E" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意就是要构造一个图，保证图中恰好有k个四个点组成的完全子图。</p>
-        
-          <a class="article-more-a" href="/2018/08/11/牛客多校七-E-Counting-4-Cliques/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-6363-bookshelf-杭电多校六1002" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/09/HDU-6363-bookshelf-杭电多校六1002/">HDU 6363 bookshelf 杭电多校六1002</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/09/HDU-6363-bookshelf-杭电多校六1002/" class="archive-article-date">
-  	<time datetime="2018-08-09T10:42:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6363" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意就是有n本书，k个柜子，你往里面放书，他给了你每种情况下计算得分的方式，求得分的期望。</p>
-        
-          <a class="article-more-a" href="/2018/08/09/HDU-6363-bookshelf-杭电多校六1002/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">容斥原理</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">欧拉降幂公式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-3506-Monkey-Party-四边形优化入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/07/HDU-3506-Monkey-Party-四边形优化入门/">HDU 3506 Monkey Party 四边形优化入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/07/HDU-3506-Monkey-Party-四边形优化入门/" class="archive-article-date">
-  	<time datetime="2018-08-07T11:25:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3506" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意，就是石子合并问题，只不过是环形的。所以把整个数组复制一遍就好了，然后就是正常的石子合并，重点要说的是四边形优化。</p>
-        
-          <a class="article-more-a" href="/2018/08/07/HDU-3506-Monkey-Party-四边形优化入门/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">区间dp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">四边形优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-3507-Print-Article-斜率优化入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/07/HDU-3507-Print-Article-斜率优化入门/">HDU 3507 Print Article 斜率优化入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/07/HDU-3507-Print-Article-斜率优化入门/" class="archive-article-date">
-  	<time datetime="2018-08-07T03:23:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=3507" target="_blank" rel="noopener">题目链接</a></p>
-<p>有一个长度为n的字符串，打印每个字符都有一个花费c，打印一段字符的花费为这段字符的花费和的平方加上一个常数M，求打印这个字符串的最小花费。</p>
-        
-          <a class="article-more-a" href="/2018/08/07/HDU-3507-Print-Article-斜率优化入门/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">斜率优化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-6351-Beautiful-Now-杭电多校五1002" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/06/HDU-6351-Beautiful-Now-杭电多校五1002/">HDU 6351 Beautiful Now 杭电多校五1002</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/06/HDU-6351-Beautiful-Now-杭电多校五1002/" class="archive-article-date">
-  	<time datetime="2018-08-06T12:49:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6351" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意，给你一个数n，你可以任意交换n中的两位数字，求在k次交换以内所能形成的最小数和最大数。</p>
-        
-          <a class="article-more-a" href="/2018/08/06/HDU-6351-Beautiful-Now-杭电多校五1002/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">搜索</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DFS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-牛客多校六-C-Generation-I" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/06/牛客多校六-C-Generation-I/">牛客多校六 C Generation I</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/06/牛客多校六-C-Generation-I/" class="archive-article-date">
-  	<time datetime="2018-08-06T11:15:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.nowcoder.com/acm/contest/144/C" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意就是有n个set，你进行n次操作，第i次操作会将编号为i到n的集合都插入一个数，问最后对于所有集合中的数共有多少种情况。</p>
-        
-          <a class="article-more-a" href="/2018/08/06/牛客多校六-C-Generation-I/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组合数学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-牛客多校五B-div" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/牛客多校五B-div/">牛客多校五B div</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/牛客多校五B-div/" class="archive-article-date">
-  	<time datetime="2018-08-03T08:51:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.nowcoder.com/acm/contest/143/B" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意简单不解释，首先要进行一些数学式子的推导。</p>
-        
-          <a class="article-more-a" href="/2018/08/03/牛客多校五B-div/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">佩尔方程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDU-6333-Harvest-of-Apples-杭电多校四-B" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/03/HDU-6333-Harvest-of-Apples-杭电多校四-B/">HDU 6333 Harvest of Apples 杭电多校四 B</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/03/HDU-6333-Harvest-of-Apples-杭电多校四-B/" class="archive-article-date">
-  	<time datetime="2018-08-03T02:34:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6333" target="_blank" rel="noopener">题目链接</a></p>
-<p>题意很简单就不说了，首先要推一个傻逼组合数公式(傻逼的我居然摸了一整场没摸出来)。用S(n,m)表示答案，则S(n+1,m)=2*S(n,m)-C(n,m)，S(n,m+1)=S(n,m)+C(n,m+1)，这个式子摸出来之后莫队跑就行了。(第一次写莫队居然能1A，无法相信)</p>
-        
-          <a class="article-more-a" href="/2018/08/03/HDU-6333-Harvest-of-Apples-杭电多校四-B/#more">read more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">组合数</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">莫队</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2018/08/13/牛客多校八-G-Counting-regions/", 
+    sourceId: "牛客多校八-G-Counting-regions",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+  
+
+  
+
   
 
 
@@ -960,8 +343,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
