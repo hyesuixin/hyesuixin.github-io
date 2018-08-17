@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
 <meta property="og:description" content="题目链接 题意就是给你一棵树，k种颜色，你可以对树进行染色，染色完成后树的价值为树上颜色相同的两点中，距离最近的那对点。然后要你求树的价值为d的染色方案总数。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T15:42:11.970Z">
+<meta property="og:updated_time" content="2018-08-17T01:11:15.368Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="牛客多校三 G Coloring Tree">
 <meta name="twitter:description" content="题目链接 题意就是给你一棵树，k种颜色，你可以对树进行染色，染色完成后树的价值为树上颜色相同的两点中，距离最近的那对点。然后要你求树的价值为d的染色方案总数。">
@@ -69,6 +69,8 @@
 				<li><a href="/tags/dp/">dp</a></li>
 	        
 				<li><a href="/tags/搜索/">搜索</a></li>
+	        
+				<li><a href="/tags/图论/">图论</a></li>
 	        
 			</ul>
 		</nav>
@@ -126,6 +128,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -138,17 +142,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/随笔/">随笔</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/数论/">数论</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/数论/">数论</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/乱搞/">乱搞</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/乱搞/">乱搞</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/dp/">dp</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/dp/">dp</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/搜索/">搜索</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/搜索/">搜索</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/图论/">图论</a></li>
 		        
 				</ul>
 			</nav>
@@ -190,7 +196,7 @@
 <p>这个题调我怀疑人生，别人的AC代码交上去各种T，连讨论区的题解代码都是T的，要多交几遍才能过。。感觉今年多校真的卡常成风。。各种题目卡常。。。卡的人心累。</p>
 <p>再说这个题思路，实际上就是把整个图BFS跑一遍，对于每个点，我们再用一个bfs或者dfs(一开始我用dfs，各种T，我同学用的bfs就过了，于是我就改成了bfs，结果还是T)，找到所有与这个点距离小于d的点，这些点的染色方案都要-1，所有点的初始方案数都是k，在处理的过程中把每个点的染色方案累乘起来就好了。最后说一下，这个题最好一遍bfs就把大于d与d+1的方案都跑出来。。我之前一直都是两遍跑的，都是T，最后改成一遍跑。。终于过了。</p>
 <p>AC代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;assert.h&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">#include&lt;cmath&gt;</span><br><span class="line">#include&lt;stack&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">#include&lt;set&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;bitset&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">const long long MOD=1e9+7;</span><br><span class="line">const int MAXM=5000;</span><br><span class="line"></span><br><span class="line">int n,k,d;</span><br><span class="line">vector&lt;int &gt; e[MAXM+10];</span><br><span class="line">int dis[MAXM+10][MAXM+10];</span><br><span class="line">long long v1[MAXM+10];</span><br><span class="line">long long v2[MAXM+10];</span><br><span class="line">bool vis[MAXM+10];</span><br><span class="line">long long res1,res2;</span><br><span class="line"></span><br><span class="line">void bfs2(int cur,int d) &#123;</span><br><span class="line">    queue&lt;int &gt; q1;</span><br><span class="line">    q1.push(cur);</span><br><span class="line">    bool vis[MAXM+10];</span><br><span class="line">    memset(vis,0,sizeof(vis));</span><br><span class="line">    while(!q1.empty()) &#123;</span><br><span class="line">        int now=q1.front();</span><br><span class="line">        q1.pop(); vis[now]=true;</span><br><span class="line">      //  cout&lt;&lt;cur&lt;&lt;&quot;   &quot;&lt;&lt;now&lt;&lt;&quot;   &quot;&lt;&lt;dis[cur][now]&lt;&lt;endl;</span><br><span class="line">        if (now!=cur) &#123;</span><br><span class="line">            if (dis[cur][now]&lt;d) v1[now]--;</span><br><span class="line">            if (dis[cur][now]&lt;=d) v2[now]--;</span><br><span class="line">            if (dis[cur][now]&gt;d) continue;</span><br><span class="line">        &#125;</span><br><span class="line">        int len=e[now].size();</span><br><span class="line">        for (int i=0;i&lt;len;i++) &#123;</span><br><span class="line">            int nx=e[now][i];</span><br><span class="line">            if (vis[nx]) continue;</span><br><span class="line">            dis[cur][nx]=dis[cur][now]+1;</span><br><span class="line">            q1.push(nx);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void debug() &#123;</span><br><span class="line">    for (int i=1;i&lt;=n;i++)</span><br><span class="line">        printf(&quot;%d &quot;,v1[i]);</span><br><span class="line">    printf(&quot;-----\n&quot;);</span><br><span class="line">&#125;</span><br><span class="line">void bfs(int d) &#123;</span><br><span class="line">    long long ans=1;</span><br><span class="line">    queue&lt;int &gt; q1;</span><br><span class="line">    q1.push(1);</span><br><span class="line">    memset(vis,false,sizeof(vis));</span><br><span class="line">    for (int i=1;i&lt;=n;i++)</span><br><span class="line">        v1[i]=k,v2[i]=k;</span><br><span class="line">    while(!q1.empty()) &#123;</span><br><span class="line">        int cur=q1.front();</span><br><span class="line">        q1.pop();</span><br><span class="line">        vis[cur]=true;</span><br><span class="line">       // for (int j=1;j&lt;=n;j++)</span><br><span class="line">           // if (j!=cur&amp;&amp;dis[cur][j]&lt;d) v[j]--;</span><br><span class="line">        bfs2(cur,d);</span><br><span class="line">      //  debug();</span><br><span class="line">        res1=res1*v1[cur]%MOD;</span><br><span class="line">        res2=res2*v2[cur]%MOD;</span><br><span class="line">        int len=e[cur].size();</span><br><span class="line">        for (int j=0;j&lt;len;j++) &#123;</span><br><span class="line">            int nx=e[cur][j];</span><br><span class="line">            if (vis[nx]) continue;</span><br><span class="line">            q1.push(nx);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    scanf(&quot;%d%d%d&quot;,&amp;n,&amp;k,&amp;d);</span><br><span class="line">    int u,v;</span><br><span class="line">    for (int i=1;i&lt;=n-1;i++) &#123;</span><br><span class="line">        scanf(&quot;%d%d&quot;,&amp;u,&amp;v);</span><br><span class="line">        e[u].push_back(v); e[v].push_back(u);</span><br><span class="line">    &#125;</span><br><span class="line">   // memset(dis,0,sizeof(dis));</span><br><span class="line">  //  for (int i=1;i&lt;=n;i++)</span><br><span class="line">    //   dfs(i,i,-1);</span><br><span class="line">    res1=res2=1;</span><br><span class="line">    bfs(d);</span><br><span class="line">   // cout&lt;&lt;res2&lt;&lt;&quot;   &quot;&lt;&lt;endl;</span><br><span class="line">    long long ans=(res1-res2+MOD)%MOD;</span><br><span class="line">    printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,k,d;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span> &gt; e[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> dis[MAXM+<span class="number">10</span>][MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> v1[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> v2[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[MAXM+<span class="number">10</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> res1,res2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs2</span><span class="params">(<span class="keyword">int</span> cur,<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span> &gt; q1;</span><br><span class="line">    q1.push(cur);</span><br><span class="line">    <span class="keyword">bool</span> vis[MAXM+<span class="number">10</span>];</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    <span class="keyword">while</span>(!q1.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> now=q1.front();</span><br><span class="line">        q1.pop(); vis[now]=<span class="literal">true</span>;</span><br><span class="line">      <span class="comment">//  cout&lt;&lt;cur&lt;&lt;"   "&lt;&lt;now&lt;&lt;"   "&lt;&lt;dis[cur][now]&lt;&lt;endl;</span></span><br><span class="line">        <span class="keyword">if</span> (now!=cur) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dis[cur][now]&lt;d) v1[now]--;</span><br><span class="line">            <span class="keyword">if</span> (dis[cur][now]&lt;=d) v2[now]--;</span><br><span class="line">            <span class="keyword">if</span> (dis[cur][now]&gt;d) <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len=e[now].size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> nx=e[now][i];</span><br><span class="line">            <span class="keyword">if</span> (vis[nx]) <span class="keyword">continue</span>;</span><br><span class="line">            dis[cur][nx]=dis[cur][now]+<span class="number">1</span>;</span><br><span class="line">            q1.push(nx);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">debug</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d "</span>,v1[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"-----\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> d)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span> &gt; q1;</span><br><span class="line">    q1.push(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">memset</span>(vis,<span class="literal">false</span>,<span class="keyword">sizeof</span>(vis));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        v1[i]=k,v2[i]=k;</span><br><span class="line">    <span class="keyword">while</span>(!q1.empty()) &#123;</span><br><span class="line">        <span class="keyword">int</span> cur=q1.front();</span><br><span class="line">        q1.pop();</span><br><span class="line">        vis[cur]=<span class="literal">true</span>;</span><br><span class="line">       <span class="comment">// for (int j=1;j&lt;=n;j++)</span></span><br><span class="line">           <span class="comment">// if (j!=cur&amp;&amp;dis[cur][j]&lt;d) v[j]--;</span></span><br><span class="line">        bfs2(cur,d);</span><br><span class="line">      <span class="comment">//  debug();</span></span><br><span class="line">        res1=res1*v1[cur]%MOD;</span><br><span class="line">        res2=res2*v2[cur]%MOD;</span><br><span class="line">        <span class="keyword">int</span> len=e[cur].size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len;j++) &#123;</span><br><span class="line">            <span class="keyword">int</span> nx=e[cur][j];</span><br><span class="line">            <span class="keyword">if</span> (vis[nx]) <span class="keyword">continue</span>;</span><br><span class="line">            q1.push(nx);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;k,&amp;d);</span><br><span class="line">    <span class="keyword">int</span> u,v;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n<span class="number">-1</span>;i++) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">        e[u].push_back(v); e[v].push_back(u);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">// memset(dis,0,sizeof(dis));</span></span><br><span class="line">  <span class="comment">//  for (int i=1;i&lt;=n;i++)</span></span><br><span class="line">    <span class="comment">//   dfs(i,i,-1);</span></span><br><span class="line">    res1=res2=<span class="number">1</span>;</span><br><span class="line">    bfs(d);</span><br><span class="line">   <span class="comment">// cout&lt;&lt;res2&lt;&lt;"   "&lt;&lt;endl;</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=(res1-res2+MOD)%MOD;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -447,14 +453,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">乱搞</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数论</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">dp</a>
               </li>
              
@@ -471,11 +469,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">乱搞</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数论</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">容斥原理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">构造</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">概率与期望dp</a>
+                <a href="javascript:void(0)" class="js-tag color2">状态压缩dp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,19 +497,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">状态压缩dp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">拉格朗日插值</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">伯努利数</a>
+                <a href="javascript:void(0)" class="js-tag color3">概率与期望dp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -511,11 +509,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">容斥原理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">dfs</a>
+                <a href="javascript:void(0)" class="js-tag color2">欧拉降幂公式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,11 +517,31 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">平面几何欧拉公式</a>
+                <a href="javascript:void(0)" class="js-tag color4">最短路</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">欧拉降幂公式</a>
+                <a href="javascript:void(0)" class="js-tag color3">图论</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">dfs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">拉格朗日插值</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">伯努利数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">平面几何欧拉公式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -535,15 +549,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">树形dp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">组合数学</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">树形dp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数位dp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">欧拉函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">莫比乌斯反演</a>
               </li>
             
             <div class="clearfix"></div>

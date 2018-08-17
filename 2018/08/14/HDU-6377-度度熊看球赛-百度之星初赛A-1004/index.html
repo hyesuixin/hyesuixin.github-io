@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 组合数学 | hyesuixin&#39;s blog</title>
+  <title>HDU 6377 度度熊看球赛 百度之星初赛A 1004 | hyesuixin&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="hyesuixin&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/组合数学/index.html">
+  <meta name="description" content="题目链接 中文题不解释题意 题目求的是期望，但是要你乘(2n)!，所以实际上直接统计方案数然后算贡献就可以了。">
+<meta name="keywords" content="dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDU 6377 度度熊看球赛 百度之星初赛A 1004">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/HDU-6377-度度熊看球赛-百度之星初赛A-1004/index.html">
 <meta property="og:site_name" content="hyesuixin&#39;s blog">
+<meta property="og:description" content="题目链接 中文题不解释题意 题目求的是期望，但是要你乘(2n)!，所以实际上直接统计方案数然后算贡献就可以了。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-14T09:33:11.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hyesuixin&#39;s blog">
+<meta name="twitter:title" content="HDU 6377 度度熊看球赛 百度之星初赛A 1004">
+<meta name="twitter:description" content="题目链接 中文题不解释题意 题目求的是期望，但是要你乘(2n)!，所以实际上直接统计方案数然后算贡献就可以了。">
   
     <link rel="alternative" href="/atom.xml" title="hyesuixin&#39;s blog" type="application/atom+xml">
   
@@ -164,64 +169,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-HDU-6377-度度熊看球赛-百度之星初赛A-1004" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/06/牛客多校六-C-Generation-I/" class="archive-article-date">
-  	<time datetime="2018-08-06T11:15:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-06</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/06/牛客多校六-C-Generation-I/">牛客多校六 C Generation I</a>
+    <h1 class="article-title" itemprop="name">
+      HDU 6377 度度熊看球赛 百度之星初赛A 1004
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/08/14/HDU-6377-度度熊看球赛-百度之星初赛A-1004/" class="archive-article-date">
+  	<time datetime="2018-08-14T09:15:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=6377" target="_blank" rel="noopener">题目链接</a></p>
+<p>中文题不解释题意</p>
+<p>题目求的是期望，但是要你乘(2n)!，所以实际上直接统计方案数然后算贡献就可以了。</p>
+<a id="more"></a>
+<p>$$<br>设dp[i][j]为i对情侣中有j对坐在一起的情况。那么就有五种状态转移方式<br>$$</p>
+<p>$$<br>1，一对新的情侣坐在一起并拆散了一对原有的情侣:dp[i][j]+=dp[i-1][j]\times j<br>$$</p>
+<p>$$<br>2，一对新的情侣坐在一起但是没有拆散原有的情侣:dp[i][j]+=dp[i-1][j-1]\times (2\times i-j)<br>$$</p>
+<p>$$<br>3，一对新的情侣不坐在一起，不拆散任何一对原有的情侣:dp[i][j]+=dp[i-1][j]\times \frac{(2\times i-j-2)\times (2\times i-j-1)}{2}<br>$$</p>
+<p>$$<br>4，新的情侣不坐在一起，但拆散一对原有的情侣:dp[i][j]+=dp[i-1][j+1]\times (2\times i-j-2)\times (j+1)<br>$$</p>
+<p>$$<br>5,新的情侣不坐在一起，拆散了两对原有的情侣:dp[i][j]+=dp[i-1][j+2]\times \frac{(j+2)\times (j+1)}{2}<br>$$</p>
+<p>由于所有的情侣男女两人可以换位置，所以最后的答案要乘2^n。</p>
+<p>AC代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> comment(linker, <span class="meta-string">"/STACK:1024000000,1024000000"</span>)</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXM=<span class="number">2010</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">2e9</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> eps=<span class="number">0.0000005</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> MOD=<span class="number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,d;</span><br><span class="line"><span class="comment">//long long fac[MAXM+10],inv[MAXM+10];</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> dp[<span class="number">1010</span>][<span class="number">1010</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">qpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x,<span class="keyword">long</span> <span class="keyword">long</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(y) &#123;</span><br><span class="line">        <span class="keyword">if</span> (y&amp;<span class="number">1L</span>L) res=(res*x)%MOD;</span><br><span class="line">        x=(x*x)%MOD;</span><br><span class="line">        y=y&gt;&gt;<span class="number">1L</span>L;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//  fac[0]=1;</span></span><br><span class="line">  <span class="comment">//  for (long long i=1;i&lt;=MAXM;i++)</span></span><br><span class="line">       <span class="comment">// fac[i]=(fac[i-1]*i)%MOD,inv[i]=qpow(fac[i],MOD-2);</span></span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">0</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> inv=qpow(<span class="number">2</span>,MOD<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=i;j++)&#123;</span><br><span class="line">            dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][j]*j%MOD)%MOD;</span><br><span class="line">            <span class="keyword">if</span> (j&gt;=<span class="number">1</span>) dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][j<span class="number">-1</span>]*(<span class="number">2</span>*i-j)%MOD)%MOD;</span><br><span class="line">            <span class="keyword">if</span> (j&lt;=i<span class="number">-1</span>) dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][j]*(<span class="number">2</span>*i-j<span class="number">-2</span>)%MOD*(<span class="number">2</span>*i-j<span class="number">-1</span>)%MOD*inv%MOD)%MOD;</span><br><span class="line">            <span class="keyword">if</span> (j+<span class="number">1</span>&lt;=i<span class="number">-1</span>) dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][j+<span class="number">1</span>]*(<span class="number">2</span>*i-j<span class="number">-2</span>)%MOD*(j+<span class="number">1</span>)%MOD)%MOD;</span><br><span class="line">            <span class="keyword">if</span> (j+<span class="number">2</span>&lt;=i<span class="number">-1</span>) dp[i][j]=(dp[i][j]+dp[i<span class="number">-1</span>][j+<span class="number">2</span>]*(j+<span class="number">2</span>)%MOD*(j+<span class="number">1</span>)%MOD*inv%MOD);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*for (int i=0;i&lt;=1000;i++) &#123;</span></span><br><span class="line"><span class="comment">        for (int j=0;j&lt;=i;j++)</span></span><br><span class="line"><span class="comment">            dp[i][j]=dp[i][j]*qpow(2,j)%MOD;</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;d)!=EOF) &#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">            ans=(ans+dp[n][i]*qpow(d,i)%MOD)%MOD;</span><br><span class="line">        ans=ans*qpow(<span class="number">2</span>,n)%MOD;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">组合数学</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">dp</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/08/14/HDU-6377-度度熊看球赛-百度之星初赛A-1004/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/08/17/HDU-6386-Age-of-Moyu-杭电多校七1001/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HDU 6386 Age of Moyu 杭电多校七1001
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2018/08/13/牛客多校八-G-Counting-regions/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">牛客多校八 G Counting regions</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script>
+  var cloudTieConfig = {
+    url: "http://yoursite.com/2018/08/14/HDU-6377-度度熊看球赛-百度之星初赛A-1004/", 
+    sourceId: "HDU-6377-度度熊看球赛-百度之星初赛A-1004",
+    productKey: "true",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="//img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -244,9 +363,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
